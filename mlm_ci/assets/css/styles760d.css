@@ -1,0 +1,15 @@
+
+[data-nomargin]{
+margin: 0 !important;
+}
+
+
+.hr_smallgap{
+  position: relative;
+  margin-top:44px;
+}
+@media (max-width:1024px){
+  .hr_smallgap{
+	margin-top:35px;
+  }
+}
