@@ -8,17 +8,18 @@ class Home extends CI_Controller {
     public function index(){
         $data['products']=$this->Home_model->get_products_data();
         $data['slider']=$this->Home_model->get_slider_data();
+        $data['script_file'] = 'home.js';
         $this->load->view('Header/header');
         $this->load->view('Top_bar/top_bar');
         $this->load->view('Navbar/navbar');
         $this->load->view('Slider/slider',$data);
         $this->load->view('Body/body',$data);
         $this->load->view('Body_slider/body_slider');
-        $this->load->view('Banner/banner');
-        $this->load->view('Footer/footer');
+        // $this->load->view('Banner/banner');
+        $this->load->view('Footer/footer', $data);
         }
     public function Product_details($id){
-        $data['products']=$this->Home_model->get_product_detail($id);
+        $data['product']=$this->Home_model->get_product_detail($id);
         $this->load->view('Header/header');
         $this->load->view('Top_bar/top_bar');
         $this->load->view('Navbar/navbar');
@@ -36,6 +37,12 @@ class Home extends CI_Controller {
         redirect('Home/Cart');
     }   
     public function Cart(){
+        if(isset($this->session->userdata['logged_in'])){
+            $sess_data=$this->session->userdata('logged_in');
+                $data['full_name']=$sess_data;
+                $user_id = $sess_data['user_id'];
+                // var_dump($sess_data);
+        }
             $this->load->view('Header/header');
             $this->load->view('Top_bar/top_bar');
             $this->load->view('Navbar/navbar');
@@ -68,13 +75,13 @@ class Home extends CI_Controller {
         if ($rowid==="all"){
                     $this->cart->destroy();
         }else{
-                    $data = array(
-                'rowid'   => $rowid,
-                'qty'     => 0
-            );
+                $data = array(
+                    'rowid'   => $rowid,
+                    'qty'     => 0
+                );
                     $this->cart->update($data);
         }
-                redirect('Home/cart');
+                redirect('Home/'); 
     }
         public function Register(){
 
@@ -200,7 +207,8 @@ class Home extends CI_Controller {
         }
         else{
            $chk_referal_id=$this->Home_model->chk_referal_id($referal_id);
-        $ref_id=$chk_referal_id[0];
+        $ref_id= $chk_referal_id[0];
+        var_dump($ref_id);
         //print_r($ref_id);die("uk");
             $user_id=$user_id + 1;
               $data = array(
@@ -230,8 +238,17 @@ class Home extends CI_Controller {
         } 
         }       
     public function Confirm_order(){
+
+    
             $user_id=$this->input->post('user_id');
-            //print_r($user_id);die();
+            if(!isset($user_id)){
+                if(isset($this->session->userdata['logged_in'])){
+                    $sess_data=$this->session->userdata('logged_in');
+                    $user_id = $sess_data['user_id'];
+                }
+            }
+
+
             $c_date=date('Y-m-d');
             $CartConts = $this->cart->contents();
             if(!empty($CartConts))
@@ -246,9 +263,6 @@ class Home extends CI_Controller {
             );
             $this->Home_model->insertcart($data);
             $insert_id=$this->db->insert_id();
-
-        // $checkout_id=$this->session->userdata('checkout_id');
-        // $this->Checkout_Model->addcheckoutcart($insert_id,$checkout_id,$uid);
 
         foreach ($this->cart->contents() as $items):
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -273,11 +287,33 @@ class Home extends CI_Controller {
         }
       
         public function Login(){
-            $this->load->view('Header/header');
-            $this->load->view('Top_bar/top_bar');
-            $this->load->view('Navbar/navbar');
-            $this->load->view('Login/login');
-            $this->load->view('Footer/footer');
+            if(isset($this->session->userdata['logged_in'])){
+                $sess_data=$this->session->userdata('logged_in');
+                $data['full_name']=$sess_data;
+                $user_id = $sess_data['user_id'];
+                // var_dump($user_id);
+
+                redirect('Home/Confirm_order', $user_id);
+            
+            }else{
+
+                $this->load->view('Header/header');
+                $this->load->view('Top_bar/top_bar');
+                $this->load->view('Navbar/navbar');
+                $this->load->view('Login/login');
+                $this->load->view('Footer/footer');
+            }
+        }
+        function logout()
+        {
+            $user_data = $this->session->all_userdata();
+                foreach ($user_data as $key => $value) {
+                    if ($key != 'session_id' && $key != 'ip_address' && $key != 'user_agent' && $key != 'last_activity') {
+                        $this->session->unset_userdata($key);
+                    }
+                }
+            $this->session->sess_destroy();
+            redirect('Home/'); 
         }
         public function login_validate(){
         $username=$this->input->post('username');

@@ -9,7 +9,6 @@ class Admin extends CI_Controller {
 	public function index(){	 
 		if(isset($this->session->userdata['logged_in'])) {
 			$sess_data=$this->session->userdata('logged_in');
-			//print_r($sess_data); die();
 		$data['full_name']=$sess_data;
 		$admin_id = $sess_data['id'];
 $data['total_register_member']=$this->Admin_model->total_register_member();
@@ -261,6 +260,8 @@ $data['boster_share_amount']=$this->Admin_model->boster_share_amount();
 			//print_r($sess_data); die();
 		$data['full_name']=$sess_data;
 		$admin_id = $sess_data['id'];
+		$data['colors'] = $this->Admin_model->get_all_colors();
+		$data['sizes'] = $this->Admin_model->get_all_sizes();
 		$this->load->view('Admin_header/admin_header');
 		$this->load->view('Admin_sidebar/admin_sidebar');
 		$this->load->view('Admin_topbar/admin_topbar',$data);
@@ -273,6 +274,7 @@ $data['boster_share_amount']=$this->Admin_model->boster_share_amount();
 		}
 	}
 	public function addnew_product_validate(){
+
 		date_default_timezone_set("Asia/Karachi");
         $c_date=date("h:i:sa");
 

@@ -16,6 +16,8 @@
         <link href="<?php echo base_url('style_admin/css/style.css') ?>" rel="stylesheet" type="text/css">
         <link href="<?php echo base_url('style_admin/css/custom.css') ?>" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     </head>
     <body class="fixed-left">
          <div id="preloader"><div id="status"><div class="spinner"></div></div></div>

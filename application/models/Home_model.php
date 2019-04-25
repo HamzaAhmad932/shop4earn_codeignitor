@@ -177,8 +177,8 @@ class Home_model extends CI_Model{
     $this->db->where("type !=1");
     $query = $this->db->get('users')->num_rows();
      if(!is_array($id) &&  $query!=2){
-    $return[]=$id;
-    }
+        $return[]=$id;
+        }
     }
     return $return;    
     } 
@@ -469,7 +469,7 @@ class Home_model extends CI_Model{
             $this->db->update('users');
             }
           }
-    }
+        }
             //level 7
             if($level6_id=='' || $level6_id=='2' || $level6_id=='3'){
             return $level6_id;
@@ -586,7 +586,7 @@ class Home_model extends CI_Model{
             }
           }
         }
-    }
+}
         public function insert_boster($user_id,$pid){
             $PV_for_DRF = $this->db->get_where('products',array('product_code'=>$pid))->result_array();
             $booster_comission=$PV_for_DRF[0]['booster_vol'];//PV of product
@@ -1225,6 +1225,8 @@ class Home_model extends CI_Model{
             $this->db->set('bv',$PV_for_DRF[0]['booster_vol']);
             $this->db->set('user_id',$user_id);
             $this->db->set('ip',$ip);
+            $this->db->set('color_id', '0');
+            $this->db->set('size_id', '0');
             $this->db->insert('tbl_cart_product');  
         }
 }

@@ -4,6 +4,7 @@
             $("#image").change(function(){
                 readImageData(this);
             });
+            $('.multiple-select').select2();
         });
 
         function readImageData(imgData){
@@ -102,13 +103,35 @@
             
         </div>
                                               
-                                            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-text-input" class="col-sm-2 col-form-label">Colors</label>
+                <div class="col-sm-10">
+                    <!-- <input class="form-control" type="text" value="" name="rate" id="example-text-input" required> -->
+                    <select multiple class = "form-control select2 multiple-select" name="colors">
+                        <?php foreach($colors as $color) :?>
+                        <option><?php echo $color->name;?></option>
+                    <?php endforeach;?>
+                    </select>
+                </div>
+        </div>
+        <div class="form-group row">
+        <label for="example-text-input" class="col-sm-2 col-form-label">Size</label>
+            <div class="col-sm-10">
+                <!-- <input class="form-control" type="text" value="" name="rate" id="example-text-input" required> -->
+                <select multiple class = "form-control select2 multiple-select" name="sizes">
+                    <?php foreach($sizes as $size) :?>
+                        <option><?php echo $size->name;?></option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+    </div>
  <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Rate</label>
-                                                <div class="col-sm-10">
-    <input class="form-control" type="text" value="" name="rate" id="example-text-input" required>
-                                                </div>
-                                            </div>
+        <label for="example-text-input" class="col-sm-2 col-form-label">Rate</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value="" name="rate" id="example-text-input" required>
+            </div>
+    </div>
 
  <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Quantity</label>

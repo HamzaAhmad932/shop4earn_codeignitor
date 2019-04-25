@@ -299,6 +299,11 @@
   <script src="<?php echo base_url('assets/js/currencies.js'); ?>" type="text/javascript"></script>
   <script src="<?php echo base_url('assets/js/jquery.currencies.min760d.js'); ?>" type="text/javascript"></script>
   <script src="<?php echo base_url('assets/js/platform.js'); ?>"></script>
+  <?php 
+    if(isset($script_file)){
+  ?>
+  <script src="<?php echo base_url('assets/js/custom_js/'.$script_file.'')?>"></script>
+<?php }?>
  <style>
       .active
       {

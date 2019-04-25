@@ -12,7 +12,7 @@
   <!-- /stuck nav -->
 </header>			<!--header-->
 	<div class="content">
-		<?php foreach($products as $r): ?>
+		<?php foreach($product as $r): ?>
 		<div class="single">
 			<div class="container">
 				<div class="single-grids">

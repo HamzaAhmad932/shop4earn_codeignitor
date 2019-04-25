@@ -3,29 +3,29 @@
 <div class="cart-items">
 	<div class="container">
  
-                    <?php
-                    if($cart = $this->cart->contents()){  ?>
-                        <h2>My Shopping Bag ( <?php $ocartbag = $this->cart->contents(); if(!empty($ocartbag))
-                                                    {
-                                                        echo $this->cart->total_items();
-                                                    }
-                                                    else
-                                                    {
-                                                        echo "0";
-                                                    }
-                        ?>)</h2>
-                        <?php
-                            echo form_open('Home/update_cart');
-                            $grand_total = 0;
-                            $i = 1;
-                            foreach ($cart as $item)
-                            {
-                                echo form_hidden('cart[' . $item['id'] . '][id]', $item['id']);
-                                echo form_hidden('cart[' . $item['id'] . '][rowid]', $item['rowid']);
-                                echo form_hidden('cart[' . $item['id'] . '][name]', $item['name']);
-                                echo form_hidden('cart[' . $item['id'] . '][price]', $item['price']);
-                                echo form_hidden('cart[' . $item['id'] . '][qty]', $item['qty']);
-                    ?>
+        <?php
+        if($cart = $this->cart->contents()){  ?>
+            <h2>My Shopping Bag ( <?php $ocartbag = $this->cart->contents(); if(!empty($ocartbag))
+            {
+                echo $this->cart->total_items();
+            }
+            else
+            {
+                echo "0";
+            }
+            ?>)</h2>
+            <?php
+                echo form_open('Home/update_cart');
+                $grand_total = 0;
+                $i = 1;
+                foreach ($cart as $item)
+                {
+                    echo form_hidden('cart[' . $item['id'] . '][id]', $item['id']);
+                    echo form_hidden('cart[' . $item['id'] . '][rowid]', $item['rowid']);
+                    echo form_hidden('cart[' . $item['id'] . '][name]', $item['name']);
+                    echo form_hidden('cart[' . $item['id'] . '][price]', $item['price']);
+                    echo form_hidden('cart[' . $item['id'] . '][qty]', $item['qty']);
+        ?>
 			 <div class="cart-header">
                                 <?php
                                         $path = "<div class='close1'></div>";
@@ -91,7 +91,7 @@
                          <div class="col-md-12" style="text-align: right;">
                                           <button type="submit" class="btn btn-danger my-cart-btn my-cart-b" >Update Cart</button>
                                             <button type="button" class="btn btn-danger my-cart-btn my-cart-b" onclick="clear_cart()" >Clear Cart</button>
-                                            <a href="<?=site_url('Home/Register');?>" type="button" class="btn btn-danger my-cart-btn my-cart-b" >Checkout</a>
+                                            <a href="<?=site_url('Home/Login');?>" type="button" class="btn btn-danger my-cart-btn my-cart-b" >Checkout</a>
                                             <?php echo form_close(); ?>
                          </div>
                                
@@ -110,7 +110,7 @@
         function clear_cart() {
             var result = confirm('Are you sure want to clear all Shopping?');
             if (result) {
-                window.location = "<?php echo site_url('Home/remove_cart'); ?>";
+                window.location = "<?php echo site_url('Home/remove_cart/all'); ?>";
             } else {
                 return false; // cancel button
             }

@@ -5,35 +5,52 @@
     
 <!--pRODUCT loop sTART==================================================================-->
     
-  <?php foreach($products as $r): ?>
-    <div class="col-xs-6 col-sm-4 col-md-3">
-        <div class="product">
-          <div class="product_inside">
-            <div class="image-box">
-              <img class="" width="60px" height="60px" src="<?php echo base_url().$r->img_path; ?>" alt=""/>
+    <div class="container page-wrapper">
+      <div class="page-inner">
+        <div class="row">
+          <?php foreach($products as $r): ?>
+          <div class="el-wrapper" style="margin-left: 20px;">
+            <div class="box-up">
+              <img class="img" src="<?php echo base_url().$r->img_path; ?>" alt="">
+              <div class="img-info">
+                <div class="info-inner">
+                  <span class="p-name"><a href="<?php echo site_url("Home/Product_details");?>/<?php echo $r->id; ?>"><?php echo $r->product_name; ?></a></span>
+                  <span class="p-company"><?php echo $r->product_des; ?></span>
+                </div>
+                <div class="a-size">Available sizes : <span class="size">S , M , L , XL</span></div>
+              </div>
             </div>
-          <h2 class="title"><a href="<?php echo site_url("Home/Product_details");?>/<?php echo $r->id; ?>"><?php echo $r->product_name; ?></a></h2>
-          <div class="price"><span><span class=money><?php echo $r->product_price; ?></span></span><span class="old-price hide"></span></div>
-            <div class="description"><?php echo $r->product_des; ?></div>
-            <!-- <span class="money">PV: <?php echo $r->basic_vol; ?> | BV:  <?php echo $r->booster_vol; ?> </span> -->
-            <div class="product_inside_hover">
-            <div class="product_inside_info">
+
+            <div class="box-down">
+              <div class="h-bg">
+                <div class="h-bg-inner"></div>
+              </div>
+
+              <form id="my_form" action="<?php echo site_url('Home/Add_cart'); ?>" method="post" name="productform" onsubmit="return validateForm()">
+
+                    <input min="1" type="hidden" id="quantity" name="qty" value="1">
+                    <input type="hidden" name="product_code" value="<?php echo $r->product_code; ?>">
+                    <input type="hidden" name="product_name" value="<?php echo $r->product_name; ?>">
+                    <input type="hidden" name="product_price" value="<?php echo $r->product_price; ?>">
+                    <input type="hidden" name="product_cat" value="<?php echo $r->product_cat; ?>">
+                    <input type="hidden" name="basic_vol" value="<?php echo $r->basic_vol; ?>" />
+                    <input type="hidden" name="booster_comission" value="<?php echo $r->booster_vol; ?>" />
+                    <input type="hidden" name="product_des" value="<?php echo $r->product_des; ?>">
+                    
+                  <a class="cart" href="javascript:{}" onclick="document.getElementById('my_form').submit();">
+                    <span class="price"><?php echo $r->product_price; ?></span>
+                    <span class="add-to-cart">
+                      <span class="txt">Add in cart</span>
+                    </span>
+                  </a>
+              </form>
             </div>
-               
-              <form action='http://shop4earn.com/cart/add' method='post' name='productformcart' id='addcartform'>
-              <input type='hidden' name='id'  value=2>
-              <input type='hidden' name='name'  value=Cigarette Pant>
-              <input type='hidden' name='price' value=1000>
-              <input type='hidden' name='image' value=>
-              <input min='1' type='number' id='quantity' name='qty' value='1' class='form-control input-small' style='width:60px;display:none;'>
-                                             
-              <button type='submit'  class='btn btn-product_addtocart' name='action'><span class='icon icon-shopping_basket'></span> ADD TO CART</button>
-              </form>             </div>
-            </div>
+          </div>
+          <?php endforeach; ?>
         </div>
+      </div>
     </div>
       
-  <?php endforeach; ?>
      
     <!--pRODUCT loop eND==================================================================-->
     </div>

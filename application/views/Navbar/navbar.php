@@ -17,18 +17,6 @@
 <nav class="header-menu">
   <ul>
     
-    
-      
-      
-      
-      
-    
-      
-      
-      
-      
-      
-    
     <li>
       <a href="<?php echo site_url('Home'); ?>" class="active">HOME</a>
     </li>
@@ -39,13 +27,18 @@
       <a href="http://shop4earn.com/Products">PRODUCTS</a>
     </li>
      
-     <li class="dropdown multicolumn" >
-      <a href="#">CATEGORIES</a>
-      
-             <div class="dropdown-menu one-col">
-    <ul>
-        <li><a href="http://shop4earn.com/ProductList/1">men</a></li><li><a href="http://shop4earn.com/ProductList/3">almon</a></li>   </ul>
-</div>
+    <li class="dropdown multicolumn" >
+      <a href="#">CATEGORIES</a>      
+        <div class="dropdown-menu one-col">
+        <ul>
+            <li>
+                <a href="http://shop4earn.com/ProductList/1">men</a>
+            </li>
+            <li>
+                <a href="http://shop4earn.com/ProductList/3">almon</a>
+            </li>
+        </ul>
+    </div>
   </li>
     
   <li>

@@ -17,12 +17,41 @@
           <span class="dropdown-label hidden-sm hidden-xs">My Account</span>
         </a>
         <ul class="dropdown-menu">
-    
-                                             <li><a href="<?php echo site_url('Home/Login'); ?>"><span class="icon icon-lock_outline"></span>Sign In</a></li>
-                                        <li><a href="<?php echo site_url('Home/Register'); ?>"><span class="icon icon-person_add"></span>Register</a></li>
-                                       
+            <?php if(isset($this->session->userdata['logged_in'])){?>
+                <li>
+                    <a href="<?php echo site_url('Users'); ?>">
+                        <span class="icon icon-person"></span>
+                        Account
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('Home/Login'); ?>">
+                        <span class="icon icon-check"></span>
+                        Checkout
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('Home/logout'); ?>">
+                        <span class="icon icon-lock_outline"></span>
+                        Log Out
+                    </a>
+                </li>
 
-                                          </ul>
+        <?php }else{?>
+                <li>
+                    <a href="<?php echo site_url('Home/Login'); ?>">
+                        <span class="icon icon-lock_outline"></span>
+                        Sign In
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('Home/Register'); ?>">
+                        <span class="icon icon-person_add"></span>
+                        Register
+                    </a>
+                </li>
+        <?php }?>
+        </ul>
     </div>
         <!-- cart -->
     <div class="main-parent-cart">

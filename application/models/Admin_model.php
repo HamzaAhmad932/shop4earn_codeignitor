@@ -3,6 +3,18 @@ class Admin_model extends CI_Model{
 	public function __construct(){
 		parent::__construct();
 	}
+	public function get_all_colors(){
+		$this->db->select('*');
+		$this->db->from('colors');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	public function get_all_sizes(){
+		$this->db->select('*');
+		$this->db->from('sizes');
+		$query = $this->db->get();
+		return $query->result();
+	}
 	public function get_customers(){
 		$this->db->select('*');
 		$this->db->from('users');

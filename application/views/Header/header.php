@@ -53,6 +53,7 @@
             <!-- FlexSlider -->
 <script defer src="<?php echo base_url('assets/js/jquery.flexslider.js'); ?>"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/css/flexslider.css'); ?>" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/card.css')?>">
 </head>
 <body>
  
